@@ -7,7 +7,7 @@ package object sudoku {
   private val offsets = for (x <- 0 to 2; y <- 0 to 2) yield (x, y)
 
   private class SudokuSeq(s: Seq[Int]) {
-    def isValid: Boolean = numbers.intersect(s.toSet).size == 9
+    def isValid: Boolean = numbers.equals(s.toSet)
   }
 
   private implicit def seqToSudokuSeq(s: Seq[Int]) = new SudokuSeq(s)
