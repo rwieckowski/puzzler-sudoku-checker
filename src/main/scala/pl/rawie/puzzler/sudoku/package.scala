@@ -19,11 +19,11 @@ package object sudoku {
 
     def box(i: Int): Seq[Int] = {
       val (x, y) = ((i % 3) * 3, (i / 3) * 3)
-      offsets.map(o => board(y + o._1)(x + o._2))
+      offsets.map { case (dx, dy) => board(y + dy)(x + dx) }
     }
 
     (0 to 8)
-      .map(i => row(i).isValid && col(i).isValid && box(i).isValid)
+      .map { i => row(i).isValid && col(i).isValid && box(i).isValid }
       .find(!_)
       .isEmpty
   }
